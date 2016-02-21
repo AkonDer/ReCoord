@@ -83,5 +83,27 @@ namespace ReCoord
                 return Math.Sqrt(H * H + X * X); // наклонная дальность высчетаная по формуле сумма квадратов катетов равна квадрату гипотенузы
             }
         }
+
+        //функция возвращает градусы
+        public string ToGrad(double a)
+        {
+            return Math.Truncate((decimal)(a)).ToString();
+        }
+
+        //функция возвращает минуты
+        public string ToMin(double a)
+        {
+            double x = (double)Math.Truncate((decimal)(a)); // получаем целую часть
+            x = a - x; // получаем дробную часть
+            return Math.Truncate((decimal)(x * 60)).ToString();
+        }
+
+        // функция возыращает секунды
+        public string ToSec(double a)
+        {
+            double x = (double)Math.Truncate((decimal)(a * 100)); // получаем целую часть предварительно умножив на 100
+            x = Math.Round(a * 100 - x, 2); // получаем дробную часть и округляем до сотых
+            return Math.Truncate((decimal)(x * 60)).ToString();
+        }
     }
 }
