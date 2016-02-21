@@ -67,12 +67,12 @@ namespace ReCoord
             get
             {
                 double H = Hop - Hst + dYtr; // высота точки упреждения от станции
-                return Math.Asin(H/Dl())*180/Math.PI;
+                return Math.Asin(H / Dl()) * 180 / Math.PI;
             }
         }
 
         // Свойство - наклонная дальность
-        public double Dnakl
+        public double getDnakl
         {
             get
             {
