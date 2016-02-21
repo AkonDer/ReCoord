@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ReCoord
 {
-    public class Class1
+    public class RCoord
     {
     }
 }
