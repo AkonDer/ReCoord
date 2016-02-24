@@ -35,15 +35,15 @@ namespace ReCoord
         /// <param name="yst">Координата Y станции</param>
         /// <param name="hst">Высота станции</param>
         /// <param name="al">Угол основного направления</param>
-        public RCoord(double xtr, 
-                      double ytr, 
-                      double xop,  
-                      double yop,  
-                      double hop,  
-                      double xst,  
-                      double yst,  
-                      double hst,  
-                      double al)   
+        public RCoord(double xtr,
+                      double ytr,
+                      double xop,
+                      double yop,
+                      double hop,
+                      double xst,
+                      double yst,
+                      double hst,
+                      double al)
         {
             dXtr = xtr;
             dYtr = ytr;
@@ -55,7 +55,7 @@ namespace ReCoord
             Hst = hst;
             alf = al;
         }
-    
+
         /// <summary>
         /// Возвращает угол от станции на точку упреждения
         /// </summary>
@@ -105,7 +105,7 @@ namespace ReCoord
         }
 
         /// <summary>
-        /// Функция берет угол в виде десятичной дроби, отсекает дробную часть и возвращает только градусы
+        /// Метод берет угол в виде десятичной дроби, отсекает дробную часть и возвращает только градусы
         /// </summary>
         /// <param name="a">Угол в градусах</param>
         /// <returns>Возвращает градусы в виде строки</returns>
@@ -115,7 +115,7 @@ namespace ReCoord
         }
 
         /// <summary>
-        /// Функция берет угол в виде десятичной дроби, отсекает все ненужное и возвращает только минуты
+        /// Метод берет угол в виде десятичной дроби, отсекает все ненужное и возвращает только минуты
         /// </summary>
         /// <param name="a">Угол в градусах</param>
         /// <returns>Возвращает минуты в виде строки</returns>
@@ -127,7 +127,7 @@ namespace ReCoord
         }
 
         /// <summary>
-        /// Функция берет угол в виде десятичной дроби, отсекает все ненужное и возвращает только секунды
+        /// Метод берет угол в виде десятичной дроби, отсекает все ненужное и возвращает только секунды
         /// </summary>
         /// <param name="a">Угол в градусах</param>
         /// <returns>Возвращает минуты в виде строки</returns>
@@ -136,6 +136,30 @@ namespace ReCoord
             double x = (double)Math.Truncate((decimal)(a * 100)); // получаем целую часть предварительно умножив на 100
             x = Math.Round(a * 100 - x, 2); // получаем дробную часть и округляем до сотых
             return Math.Truncate((decimal)(x * 60)).ToString();
+        }
+
+        /// <summary>
+        /// Метод берет угол в градусах и возвращает в делениях уголомера
+        /// </summary>
+        /// <param name="a">Угол в градусах</param>
+        /// <returns>угол в делениях угломера в виде строки</returns>
+        public string ToDU(double a)
+        {
+            string b = Math.Round(a * 6000 / 360).ToString();
+            string c = b;
+            switch (b.Length)
+            {
+                case 1:
+                    c = b.Insert(0, "000");
+                    break;
+                case 2:
+                    c = b.Insert(0, "00");
+                    break;
+                case 3:
+                    c = b.Insert(0, "0");
+                    break;
+            }
+            return c.Insert(c.Length - 2, "-");
         }
     }
 }
