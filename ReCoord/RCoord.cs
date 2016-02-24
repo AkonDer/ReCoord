@@ -5,6 +5,9 @@ using System.Text;
 
 namespace ReCoord
 {
+    /// <summary>
+    /// Этот класс содержит методы и свойства предназначенные для расчета точек упреждения РЛС
+    /// </summary>
     class RCoord
     {
         // приватные поля
@@ -20,16 +23,27 @@ namespace ReCoord
                         Ytr, // Координата Y траектории в топографических координатах
                         alf; // угол основного направления
 
-        // конструктор в котором происходит инициализация переменных
-        public RCoord(double xtr, // Координата Х траектории
-                      double ytr, // Координата Y траектории (высота)
-                      double xop, // Координата Х огневой позиции
-                      double yop, // Координата Y огневой позиции
-                      double hop, // высота огневой позиции
-                      double xst, // Координата Х станции РЛС
-                      double yst, // Координата Y станции 
-                      double hst, // высота станции
-                      double al)  // угол основного направления
+        /// <summary>
+        /// Конструктор класса в котором происходит инициализация переменных
+        /// </summary>
+        /// <param name="xtr">Координата Х траектории</param>
+        /// <param name="ytr">Координата Y траектории (высота)</param>
+        /// <param name="xop">Координата Х огневой позиции</param>
+        /// <param name="yop">Координата Y огневой позиции</param>
+        /// <param name="hop">Высота огневой позиции</param>
+        /// <param name="xst">Координата Х станции РЛС</param>
+        /// <param name="yst">Координата Y станции</param>
+        /// <param name="hst">Высота станции</param>
+        /// <param name="al">Угол основного направления</param>
+        public RCoord(double xtr, 
+                      double ytr, 
+                      double xop,  
+                      double yop,  
+                      double hop,  
+                      double xst,  
+                      double yst,  
+                      double hst,  
+                      double al)   
         {
             dXtr = xtr;
             dYtr = ytr;
@@ -41,8 +55,10 @@ namespace ReCoord
             Hst = hst;
             alf = al;
         }
-
-        // свойство - угол направления на нашу точку траектории (точка упреждения)
+    
+        /// <summary>
+        /// Возвращает угол от станции на точку упреждения
+        /// </summary>
         public double GetAlf
         {
             get
@@ -61,7 +77,9 @@ namespace ReCoord
             }
         }
 
-        // свойство - угол места цели
+        /// <summary>
+        /// Возвращает угол места точки упреждения
+        /// </summary>
         public double GetUMC
         {
             get
@@ -71,7 +89,9 @@ namespace ReCoord
             }
         }
 
-        // Свойство - наклонная дальность
+        /// <summary>
+        /// Возвращает наклонную дальность
+        /// </summary>
         public double getDnakl
         {
             get
@@ -84,13 +104,21 @@ namespace ReCoord
             }
         }
 
-        //функция возвращает градусы
+        /// <summary>
+        /// Функция берет угол в виде десятичной дроби, отсекает дробную часть и возвращает только градусы
+        /// </summary>
+        /// <param name="a">Угол в градусах</param>
+        /// <returns>Возвращает градусы в виде строки</returns>
         public string ToGrad(double a)
         {
             return Math.Truncate((decimal)(a)).ToString();
         }
 
-        //функция возвращает минуты
+        /// <summary>
+        /// Функция берет угол в виде десятичной дроби, отсекает все ненужное и возвращает только минуты
+        /// </summary>
+        /// <param name="a">Угол в градусах</param>
+        /// <returns>Возвращает минуты в виде строки</returns>
         public string ToMin(double a)
         {
             double x = (double)Math.Truncate((decimal)(a)); // получаем целую часть
@@ -98,7 +126,11 @@ namespace ReCoord
             return Math.Truncate((decimal)(x * 60)).ToString();
         }
 
-        // функция возыращает секунды
+        /// <summary>
+        /// Функция берет угол в виде десятичной дроби, отсекает все ненужное и возвращает только секунды
+        /// </summary>
+        /// <param name="a">Угол в градусах</param>
+        /// <returns>Возвращает минуты в виде строки</returns>
         public string ToSec(double a)
         {
             double x = (double)Math.Truncate((decimal)(a * 100)); // получаем целую часть предварительно умножив на 100
